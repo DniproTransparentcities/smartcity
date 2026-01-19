@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Смарт Сіті Дніпро - Офіційний портал цифрових послуг</title>
+  <meta name="description" content="Взаємодія Дніпровської міської ради та мешканців. Всі цифрові сервіси міста в одному місці.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      line-height: 1.6;
+    }
+    
+    a { color: inherit; text-decoration: none; }
+    
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; background: transparent; }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #312e81);
+      overflow: hidden;
+      padding: 4rem 0 6rem;
+    }
+    
+    .hero-blur-1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    
+    .hero-blur-2 {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 400px; height: 400px;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    
+    .hero-blur-3 {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: rgba(34, 211, 238, 0.1);
+      border-radius: 50%;
+      filter: blur(120px);
+    }
+    
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    
+    .hero-content { position: relative; z-index: 10; }
+    
+    .hero-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-title h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    .title-white {
+      background: linear-gradient(to right, #fff, #dbeafe, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .title-yellow {
+      background: linear-gradient(to right, #fcd34d, #fbbf24, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      max-width: 600px;
+      margin: 1.5rem auto 0;
+    }
+    
+    .hero-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    }
+    
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    
+    .main-card {
+      position: relative;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    
+    .main-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    
+    .main-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+    }
+    
+    .card-circle {
+      position: absolute;
+      top: 0; right: 0;
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      transition: transform 0.5s ease;
+    }
+    
+    .main-card:hover .card-circle { transform: translate(50%, -50%) scale(1.25); }
+    
+    .card-arrow {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(4px);
+      transition: all 0.3s ease;
+    }
+    
+    .main-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+    
+    .card-content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; }
+    
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      padding-right: 2rem;
+    }
+    
+    .card-platforms {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .card-description {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .card-link {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: color 0.3s;
+    }
+    
+    .main-card:hover .card-link { color: #fff; }
+    
+    /* Color variants */
+    .bg-blue { background: linear-gradient(to bottom right, #2563eb, #1e40af); }
+    .bg-cyan { background: linear-gradient(to bottom right, #06b6d4, #2563eb); }
+    .bg-red { background: linear-gradient(to bottom right, #ef4444, #ea580c); }
+    .bg-green { background: linear-gradient(to bottom right, #22c55e, #14b8a6); }
+    .bg-purple { background: linear-gradient(to bottom right, #a855f7, #6366f1); }
+    .bg-yellow { background: linear-gradient(to bottom right, #eab308, #f59e0b); }
+    .bg-emerald { background: linear-gradient(to bottom right, #10b981, #22c55e); }
+    .bg-pink { background: linear-gradient(to bottom right, #ec4899, #f43f5e); }
+    .bg-teal { background: linear-gradient(to bottom right, #14b8a6, #0d9488); }
+    
+    /* Categories */
+    .categories { color: #1f2937; }
+    
+    .category-section { 
+      padding: 4rem 0; 
+    }
+    
+        
+    .category-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .category-icon {
+      width: 56px; height: 56px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    
+    .category-icon svg { width: 28px; height: 28px; }
+    
+    .category-info h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #111827;
+    }
+    
+    .category-info p {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+    }
+    
+    .category-badge {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+      background: rgba(0,0,0,0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-left: auto;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    
+    .service-card {
+      position: relative;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+    }
+    
+    .service-circle {
+      position: absolute;
+      top: 0; right: 0;
+      width: 96px; height: 96px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover .service-circle { transform: translate(50%, -50%) scale(1.25); }
+    
+    .service-arrow {
+      position: absolute;
+      top: 0.75rem; right: 0.75rem;
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 0.375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(4px);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+    
+    .service-content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; }
+    
+    .service-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      padding-right: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .service-description {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .service-link {
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.3s;
+    }
+    
+    .service-card:hover .service-link { color: #fff; }
+    
+    /* Footer */
+    footer {
+      position: relative;
+      background: linear-gradient(to bottom, #0f172a, #020617);
+      color: #fff;
+      overflow: hidden;
+    }
+    
+    .footer-blur-1 {
+      position: absolute;
+      top: 0; left: 25%;
+      width: 300px; height: 300px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    
+    .footer-blur-2 {
+      position: absolute;
+      bottom: 0; right: 25%;
+      width: 200px; height: 200px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+    
+    .footer-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, #3b82f6, #fbbf24, #3b82f6);
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 10;
+      padding: 3rem 0;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-logo-icon {
+      width: 40px; height: 40px;
+      border: 2px solid #fff;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+    
+    .footer-logo-text { font-size: 1.5rem; font-weight: 700; }
+    
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    
+    .footer-section h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-section p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .footer-phones {
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-phones a {
+      transition: color 0.3s;
+    }
+    
+    .footer-phones a:hover { color: #fbbf24; }
+    
+    .footer-phones .separator {
+      margin: 0 0.5rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .footer-email {
+      font-size: 0.875rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-email:hover { color: #fbbf24; }
+    
+    .footer-contacts { text-align: right; }
+    
+    @media (max-width: 768px) {
+      .footer-contacts { text-align: left; }
+    }
+    
+    .footer-address {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    
+    .footer-contact-emails {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-contact-emails a {
+      display: block;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s;
+      margin-bottom: 0.25rem;
+    }
+    
+    .footer-contact-emails a:hover { color: #fbbf24; }
+    
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+    
+    @media (max-width: 768px) {
+      .social-links { justify-content: flex-start; }
+    }
+    
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background: #fff;
+      color: #0f172a;
+    }
+    
+    .social-link svg { width: 16px; height: 16px; }
+    
+    .footer-bottom {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem 0;
+      text-align: center;
+    }
+    
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    /* Icons */
+    .icon { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-blur-1"></div>
+    <div class="hero-blur-2"></div>
+    <div class="hero-blur-3"></div>
+    <div class="hero-grid"></div>
+    
+    <div class="container hero-content">
+      <div class="hero-title">
+        <h1>
+          <span class="title-white">СМАРТ СІТІ</span><br>
+          <span class="title-yellow">ДНІПРО</span>
+        </h1>
+        <p class="hero-subtitle">Взаємодія Дніпровської міської ради та мешканців</p>
+      </div>
+      
+      <!-- Main Sections Grid -->
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <a href="https://dniprorada.gov.ua" target="_blank" class="main-card bg-blue">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Дніпровська міська рада</h3>
+            <p class="card-description">Пошук та перегляд документів міської ради, доступ до відкритих даних та інформації про бюджет міста, перегляд сесій міської ради</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 2 -->
+        <a href="https://ednipro.dp.ua" target="_blank" class="main-card bg-cyan">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">«єДніпро»</h3>
+            
+            <p class="card-description">Єдиний міський мобільний додаток для мешканців Дніпра, який об'єднує міські сервіси: оплата проїзду, звернення громадян, паркування, електронний учнівський квиток, медичний кабінет</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 3 -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdyJnK6Evd6ZYIO4U-M0gIybviH4LKyVkozZY89u-_oK1qzA/viewform?fbclid=IwY2xjawKGpvpleHRuA2FlbQIxMABicmlkETFSSXVUeERscjBiaTZpb1cwAR6DY4MQVDMW52KxTka60uhclny3nfSMG6QpIEM8KVHpU-UmDZ0YZjmlN_AKwQ_aem__eMuOWRqhLWTnzo79RX2IQ" target="_blank" class="main-card bg-red">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Безпечне місто</h3>
+            <p class="card-description">Ситуаційний центр 24/7, отримання відео з камер Ситуаційного центру відеоспостереження м. Дніпра</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 4 -->
+        <a href="https://hotline.dniprorada.gov.ua/" target="_blank" class="main-card bg-green">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Контакт-Центр м. Дніпра</h3>
+            <p class="card-description">Система, спрямована на підвищення ефективності приймання, обробки та виконання звернень громадян щодо аварійних ситуацій в місті</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 5 -->
+        <a href="https://rada.dniprorada.gov.ua/" target="_blank" class="main-card bg-purple">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Онлайн-реєстрація на сесію Дніпровської міської ради</h3>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 6 -->
+        <a href="https://petition.e-dem.ua/dnipropetrovsk" target="_blank" class="main-card bg-yellow">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">E-DEM</h3>
+            <p class="card-description">Єдина система місцевих петицій. Платформа електронної демократії. Надає можливість: подати петицію, підписати існуючі, знайти петицію</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 7 -->
+        <a href="https://data.dniprorada.gov.ua/" target="_blank" class="main-card bg-emerald">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Портал відкритих даних м. Дніпра</h3>
+            <p class="card-description">Вебпортал відкритих даних Дніпровської міської ради</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 8 -->
+        <a href="https://dda.dp.ua/" target="_blank" class="main-card bg-pink">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Агенство розвитку м. Дніпра</h3>
+            <p class="card-description">Проєкти агентства, інвестиційні можливості, події та контакти для співпраці з підприємствами та інвесторами</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-line"></div>
+  </section>
+  
+  <!-- Categories Section -->
+  <div class="categories">
+    <!-- Освіта -->
+    <section class="category-section category-education" style="background: linear-gradient(180deg, #dbeafe 0%, #ffffff 100%);">
+      <div class="container">
+        <div class="category-header">
+          <div class="category-icon bg-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Освіта</h2>
+            <p>Цифрові послуги міста Дніпро</p>
+          </div>
+          <span class="category-badge">8 сервісів</span>
+        </div>
+        <div class="services-grid">
+          <a href="https://edu.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Національне мультипредметне тестування</h4>
+              <p class="service-description">Онлайн-платформа підготовки учнів України</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://mybook.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">MyBook</h4>
+              <p class="service-description">Безкоштовна онлайн-бібліотека з підручниками</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://course.ednipro.dp.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Онлайн-курси «ЄДніпро»</h4>
+              <p class="service-description">Платформа для проходження освітніх курсів</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://sadok.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Дошкільнятко</h4>
+              <p class="service-description">Освітні програми, розвиваючі ігри, читання та аудіо книги</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://anketa.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Онлайн-заява для учнів та вчителів щодо відновлення перепусток</h4>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://otd.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Центр професійного розвитку «Освітня траєкторія»</h4>
+              <p class="service-description">Реєстрація на заходи та курси підвищення кваліфікації</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://osvita.dniprorada.gov.ua/school/enrollment" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Освітні заклади Дніпра</h4>
+              <p class="service-description">Школи, садочки, зарахування до школи, учнівський квиток, харчування (бета-версія)</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://humpolitic.dniprorada.gov.ua/" target="_blank" class="service-card bg-blue">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Дніпро Гуманітарний</h4>
+              <p class="service-description">Дошкільна освіта, загальна середня освіта, професійна освіта, спорт та культура</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Послуги -->
+    <section class="category-section category-services" style="background: linear-gradient(180deg, #ccfbf1 0%, #ffffff 100%);">
+      <div class="container">
+        <div class="category-header">
+          <div class="category-icon bg-teal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Послуги</h2>
+            <p>Цифрові послуги міста Дніпро</p>
+          </div>
+          <span class="category-badge">5 сервісів</span>
+        </div>
+        <div class="services-grid">
+          <a href="https://cnap.dniprorada.gov.ua/online-services/" target="_blank" class="service-card bg-teal">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Центр надання адміністративних послуг м. Дніпра</h4>
+              <p class="service-description">Послуги онлайн</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://dniprorada.qsolutions.com.ua:47502/index" target="_blank" class="service-card bg-teal">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Електронна черга</h4>
+              <p class="service-description">Попередній запис до адміністраторів ЦНАП</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://ritual.dniprorada.gov.ua/#bron" target="_blank" class="service-card bg-teal">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Ритуальні послуги м. Дніпра</h4>
+              <p class="service-description">Вибір та реєстрація місця поховання</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://work.dniprorada.gov.ua/" target="_blank" class="service-card bg-teal">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Інспекція з питань праці та зайнятості населення</h4>
+              <p class="service-description">Онлайн-сервіс для пошуку роботи та підбору персоналу у місті Дніпрі</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://socialpolitica.dniprorada.gov.ua/" target="_blank" class="service-card bg-teal">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Дніпро Соціальний</h4>
+              <p class="service-description">Допомога в отриманні соціальних послуг у місті Дніпрі</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Медицина -->
+    <section class="category-section category-medicine" style="background: linear-gradient(180deg, #fecdd3 0%, #ffffff 100%);">
+      <div class="container">
+        <div class="category-header">
+          <div class="category-icon bg-red">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Медицина</h2>
+            <p>Цифрові послуги міста Дніпро</p>
+          </div>
+          <span class="category-badge">3 сервіси</span>
+        </div>
+        <div class="services-grid">
+          <a href="https://ednipro.dp.ua/" target="_blank" class="service-card bg-red">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Запис до лікаря через мобільний додаток «єДніпро»</h4>
+              
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://likari.in.ua/" target="_blank" class="service-card bg-red">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Лікарі 24/7</h4>
+              <p class="service-description">Онлайн-запис на візит до лікаря</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="http://helsi.me/" target="_blank" class="service-card bg-red">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Helsi.me</h4>
+              <p class="service-description">Онлайн-платформа для запису до лікаря, електронні рецепти та направлення, управління медичними даними пацієнтів</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Транспорт -->
+    <section class="category-section category-transport" style="background: linear-gradient(180deg, #bbf7d0 0%, #ffffff 100%);">
+      <div class="container">
+        <div class="category-header">
+          <div class="category-icon bg-green">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Транспорт</h2>
+            <p>Цифрові послуги міста Дніпро</p>
+          </div>
+          <span class="category-badge">6 сервісів</span>
+        </div>
+        <div class="services-grid">
+          <a href="https://t7t.mais-studio.site/" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Дніпровський електротранспорт</h4>
+              <p class="service-description">Розклад руху, тарифи та пільги, оперативні повідомлення</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://d-transport.dp.ua/" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Д-ТРАНСПОРТ</h4>
+              <p class="service-description">Додаток для онлайн відображення рухомого складу на маршрутах міста для пасажирів</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://ednipro.dp.ua/" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Оплата проїзду через мобільний додаток «єДніпро»</h4>
+              
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://ipkp.dniprorada.gov.ua/" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Інспекція з питань контролю за паркуванням</h4>
+              <p class="service-description">Особистий кабінет водія, послуги з перевірки та оплати штрафів за паркування</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://apps.apple.com/ua/app/parking-dnipro/id1552267766" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Мобільний додаток Parking Dnipro</h4>
+              <p class="service-description">Безготівкова оплата паркування в м. Дніпро, придбання абонементів</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://apps.apple.com/ua/app/unip-%D0%BF%D0%B0%D1%80%D0%BA%D1%83%D0%B9%D1%81%D1%8F-%D0%B1%D0%B5%D0%B7-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC/id1160778590?l=ru" target="_blank" class="service-card bg-green">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Мобільний додаток UNIP</h4>
+              <p class="service-description">Дозволяє знайти паркування, прокласти маршрут, оплатити паркувальне місце</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Інше -->
+    <section class="category-section category-other" style="background: linear-gradient(180deg, #e9d5ff 0%, #ffffff 100%);">
+      <div class="container">
+        <div class="category-header">
+          <div class="category-icon bg-purple">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Інше</h2>
+            <p>Цифрові послуги міста Дніпро</p>
+          </div>
+          <span class="category-badge">5 сервісів</span>
+        </div>
+        <div class="services-grid">
+          <a href="https://memory.dp.ua/" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Сайт «Війна»</h4>
+              <p class="service-description">Сайт створено для вшанування пам'яті загиблих захисників</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://rename.dp.ua/#/" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Перейменування вулиць та місць Дніпра 2015-2024</h4>
+              <p class="service-description">Онлайн-довідник щодо перейменувань</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://heritage.dniprorada.gov.ua/poslugy/" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Культурна спадщина Дніпра</h4>
+              <p class="service-description">Послуги з отримання інформаційних довідок про належність будівель</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://midnipro.museum/" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Музей історії Дніпра</h4>
+              <p class="service-description">Інтерактивна навігація по експозиціях, подіях та тематичних заходах</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+          <a href="https://utv.dniprorada.gov.ua/" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Університет третього віку</h4>
+              <p class="service-description">Онлайн-реєстрація на безкоштовні курси</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-blur-1"></div>
+    <div class="footer-blur-2"></div>
+    <div class="footer-accent"></div>
+    
+    <div class="footer-content">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <div class="footer-logo-icon">Д</div>
+              <span class="footer-logo-text">Дніпро</span>
+            </div>
+            <p class="footer-tagline">
+              Дніпровська міська рада<br>
+              офіційний вебсайт
+            </p>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Гаряча лінія</h4>
+            <p>
+              Цілодобова<br>
+              єдина гаряча лінія<br>
+              для звернень громадян
+            </p>
+            <div class="footer-phones">
+              <a href="tel:+380567321212">+380 (56) 732 12 12</a>
+              <span class="separator">·</span>
+              <a href="tel:+380957321212">+380 (95) 732 12 12</a>
+            </div>
+            <div class="footer-phones">
+              <a href="tel:+380967321212">+380 (96) 732 12 12</a>
+              <span class="separator">·</span>
+              <a href="tel:+380737321212">+380 (73) 732 12 12</a>
+            </div>
+            <a href="mailto:zvernennya@dmr.dp.ua" class="footer-email">zvernennya@dmr.dp.ua</a>
+          </div>
+          
+          <div class="footer-section footer-contacts">
+            <h4>Контакти</h4>
+            <p class="footer-address">
+              49000, м. Дніпро,<br>
+              просп. Дмитра Яворницького, 75
+            </p>
+            <div class="footer-contact-emails">
+              <a href="mailto:office@dniprorada.gov.ua">office@dniprorada.gov.ua</a>
+              <a href="mailto:office@dmr.dp.ua">office@dmr.dp.ua</a>
+            </div>
+            <div class="social-links">
+              <a href="https://www.facebook.com/daborys.filatov" target="_blank" class="social-link" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://twitter.com/Aborys" target="_blank" class="social-link" aria-label="X (Twitter)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/borys_filatov" target="_blank" class="social-link" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="footer-copyright">© 2026 Дніпровська міська рада. Всі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
