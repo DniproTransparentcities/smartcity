@@ -238,7 +238,7 @@
     
     /* Обновленные стили для якорной навигации */
 .anchor-nav {
-  
+   position: sticky;
   top: 0;
   z-index: 100;
   background: #f8fafc;
@@ -673,23 +673,7 @@
       <!-- Main Sections Grid -->
       <div class="cards-grid">
         <!-- Card 1 -->
-        <a href="https://dniprorada.gov.ua" target="_blank" class="main-card bg-blue">
-          <div class="card-circle"></div>
-          <div class="card-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title">Дніпровська міська рада</h3>
-            <p class="card-description">Пошук та перегляд документів міської ради, доступ до відкритих даних та інформації про бюджет міста, перегляд сесій міської ради</p>
-            <div class="card-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              Перейти до сервісу
-            </div>
-          </div>
-        </a>
-        
-        <!-- Card 2 -->
-        <a href="https://ednipro.dniprorada.gov.ua/" target="_blank" class="main-card bg-purple">
+        <a href="https://ednipro.dniprorada.gov.ua/" target="_blank" class="main-card bg-blue">
           <div class="card-circle"></div>
           <div class="card-arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
@@ -698,6 +682,22 @@
             <h3 class="card-title">«єДніпро»</h3>
             
             <p class="card-description">Єдиний міський мобільний додаток для мешканців Дніпра, який об'єднує міські сервіси: оплата проїзду, звернення громадян, паркування, електронний учнівський квиток, медичний кабінет</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+        
+        <!-- Card 2 -->
+        <a href="https://dniprorada.gov.ua/uk/page/dokumenti-miskoi-radi#gsc.tab=0" target="_blank" class="main-card bg-purple">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+		  <div class="card-content">
+            <h3 class="card-title">Документи міської ради</h3>
+            <p class="card-description">Пошук прийнятих документів, проєктів документів. Перелік кодифікованих НПА. Плани проведення виконкому міської ради, сесії міської ради.</p>
             <div class="card-link">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Перейти до сервісу
@@ -1160,9 +1160,18 @@
             <h2>Інше</h2>
             <p>Цифрові послуги міста Дніпро</p>
           </div>
-          <span class="category-badge">5 сервісів</span>
+          <span class="category-badge">6 сервісів</span>
         </div>
         <div class="services-grid">
+		  <a href="https://lun.ua/misto/barrier-free/mindev-2025?region=4#9.65/48.4861/34.9657" target="_blank" class="service-card bg-purple">
+            <div class="service-circle"></div>
+            <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+            <div class="service-content">
+              <h4 class="service-title">Мапа Безбар'єрності</h4>
+              <p class="service-description">Мапа безбарʼєрності створена спільно з ЛУН та Міністерством розвитку громад та територій України</p>
+              <div class="service-link"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Детальніше</div>
+            </div>
+          </a>
           <a href="https://memory.dp.ua/" target="_blank" class="service-card bg-purple">
             <div class="service-circle"></div>
             <div class="service-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
