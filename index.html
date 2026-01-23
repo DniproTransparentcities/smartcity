@@ -237,8 +237,9 @@
     .bg-teal { background: linear-gradient(to bottom right, #14b8a6, #0d9488); }
     
     /* Обновленные стили для якорной навигации */
+/* Обновленные стили для якорной навигации */
 .anchor-nav {
-   position: sticky;
+  position: sticky;
   top: 0;
   z-index: 100;
   background: #f8fafc;
@@ -249,31 +250,29 @@
 .anchor-links {
   display: flex;
   gap: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.15rem;
-  scrollbar-width: none;
+  overflow-x: visible; /* Убираем скролл */
+  padding: 0;
   align-items: center;
-  
-}
-
-.anchor-links::-webkit-scrollbar {
-  display: none;
+  justify-content: space-between; /* Распределяем равномерно */
+  flex-wrap: nowrap;
 }
 
 .anchor-link {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
+  justify-content: flex-start; /* Выравниваем по левому краю */
+  padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  min-width: 240px;
   transition: all 0.2s ease;
   color: #1e293b;
-  text-align: center;
+  text-align: left;
+  flex: 1; /* Заставляем растягиваться */
+  min-width: 0; /* Важно для правильного сжатия */
+  max-width: 240px; /* Максимальная ширина */
 }
 
 .anchor-link:hover {
@@ -283,27 +282,110 @@
 }
 
 .anchor-link .icon-wrapper {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px; /* Фиксируем минимальный размер иконки */
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0; /* Запрещаем сжатие иконки */
 }
 
 .anchor-link .icon-text {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: black;
   line-height: 1.2;
-  margin-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 0.75rem; /* Добавь это */
 }
 
-.anchor-link .icon-subtext {
-  font-size: 0.75rem;
-  color: #64748b;
-  margin-top: 0.25rem;
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+  .anchor-link {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .anchor-link .icon-wrapper {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    margin-right: 0.5rem;
+  }
+  
+  .anchor-link .icon-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .anchor-links {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .anchor-link {
+    padding: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .anchor-link .icon-wrapper {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    margin-right: 0;
+    margin-bottom: 0.5rem; /* Расстояние между иконкой и текстом */
+  }
+  
+  .anchor-link .icon-text {
+    font-size: 0.7rem;
+    white-space: normal;
+    line-height: 1.1;
+    margin-left: 0; /* Убираем на мобильных */
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .anchor-links {
+    gap: 0.25rem;
+  }
+  
+  .anchor-link {
+    padding: 0.4rem;
+  }
+  
+  .anchor-link .icon-wrapper {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+  }
+  
+  .anchor-link .icon-text {
+    font-size: 0.65rem;
+    line-height: 1;
+  }
+}
+
+/* Для экранов меньше 360px */
+@media (max-width: 360px) {
+  .anchor-link .icon-text {
+    font-size: 0.6rem;
+  }
+  
+  .anchor-link .icon-wrapper {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+  }
 }
 
 /* Цвета иконок */
@@ -654,13 +736,61 @@
   </style>
 </head>
 <body>
+
+<!-- Якорная навигация -->
+<nav class="anchor-nav">
+  <div class="container">
+    <div class="anchor-links">
+      <a href="#education" class="anchor-link" style="background: #dbeafe">
+        <div class="category-icon bg-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="icon-text">Освіта</div>
+        
+      </a>
+      
+      <a href="#services" class="anchor-link" style="background: #ccfbf1">
+        <div class="category-icon bg-teal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="icon-text">Послуги</div>
+        
+      </a>
+      
+      <a href="#medicine" class="anchor-link" style="background: #fecdd3">
+        <div class="category-icon bg-red">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </div>
+        <div class="icon-text">Медицина</div>
+        
+      </a>
+      
+      <a href="#transport" class="anchor-link" style="background: #bbf7d0">
+        <div class="category-icon bg-green">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>
+        </div>
+        <div class="icon-text">Транспорт</div>
+        
+      </a>
+      
+      <a href="#other" class="anchor-link" style="background: #e9d5ff">
+        <div class="category-icon bg-purple">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        </div>
+        <div class="icon-text">Інше</div>
+        
+      </a>
+    </div>
+  </div>
+</nav>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-blur-1"></div>
     <div class="hero-blur-2"></div>
     <div class="hero-blur-3"></div>
     <div class="hero-grid"></div>
-    
+	
     <div class="container hero-content">
       <div class="hero-title">
         <h1>
@@ -736,7 +866,23 @@
             </div>
           </div>
         </a>
-        
+		
+        <!-- Card 4.0 -->
+		<a href="https://dda.dp.ua/" target="_blank" class="main-card bg-pink">
+          <div class="card-circle"></div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Електронне звернення</h3>
+            <p class="card-description">Сторінка для звернення громодян до Дніпровської міської ради</p>
+            <div class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Перейти до сервісу
+            </div>
+          </div>
+        </a>
+		
 		<!-- Card 4.1 -->
         <a href="https://dniprotransparentcities.github.io/shelter/" target="_blank" class="main-card bg-yellow">
           <div class="card-circle"></div>
@@ -838,52 +984,7 @@
   </section>
 
 
-  <!-- Якорная навигация -->
-<nav class="anchor-nav">
-  <div class="container">
-    <div class="anchor-links">
-      <a href="#education" class="anchor-link" style="background: #dbeafe">
-        <div class="category-icon bg-blue">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div class="icon-text">Освіта</div>
-        
-      </a>
-      
-      <a href="#services" class="anchor-link" style="background: #ccfbf1">
-        <div class="category-icon bg-teal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="icon-text">Послуги</div>
-        
-      </a>
-      
-      <a href="#medicine" class="anchor-link" style="background: #fecdd3">
-        <div class="category-icon bg-red">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-        </div>
-        <div class="icon-text">Медицина</div>
-        
-      </a>
-      
-      <a href="#transport" class="anchor-link" style="background: #bbf7d0">
-        <div class="category-icon bg-green">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>
-        </div>
-        <div class="icon-text">Транспорт</div>
-        
-      </a>
-      
-      <a href="#other" class="anchor-link" style="background: #e9d5ff">
-        <div class="category-icon bg-purple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-        </div>
-        <div class="icon-text">Інше</div>
-        
-      </a>
-    </div>
-  </div>
-</nav>
+  
   
   <!-- Categories Section -->
   <div class="categories">
